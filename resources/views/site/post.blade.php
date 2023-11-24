@@ -1,5 +1,10 @@
 @extends("site.layouts.main")
 
+
+@section('bg-img', asset('site_assets/img/post-bg.jpg'))
+@section('title', 'Man must explore, and this is exploration at its greatest')
+@section('subheading', 'Problems look mighty small from 150 miles up')
+
 @section("content")
 <article>
     <div class="container">

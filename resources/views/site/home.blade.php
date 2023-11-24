@@ -1,5 +1,8 @@
 @extends("site.layouts.main")
 
+@section('bg-img', asset('site_assets/img/home-bg.jpg'))
+@section('title', 'Clean Blog')
+@section('subheading', 'A Clean Blog Theme by Start Bootstrap')
 @section("content")
 <div class="container">
     <div class="row">

@@ -22,21 +22,21 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: url(@yield('bg-img'))">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     @if (Route::currentRouteName() == 'site.post')
                     <div class="post-heading">
-                        <h1>Man must explore, and this is exploration at its greatest</h1>
-                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                        <h1>@yield('title')</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
                     </div>
                     @else
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>@yield('title')</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">@yield('subheading')</span>
                     </div>
                     @endif
                 </div>
