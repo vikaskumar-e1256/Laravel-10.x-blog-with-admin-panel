@@ -27,6 +27,13 @@ Route::prefix('admin/')->name('admin.')->group(function() {
         ->name('create');
         Route::post('store', [PostController::class, 'store'])
         ->name('store');
+        Route::get('posts/data', [PostController::class, 'getPostsData'])
+        ->name('data');
+
     });
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -62,7 +62,8 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     animation: true,
                 });
-
+                // Reset the form
+                $('#postForm')[0].reset();
                 // Enable the submit button after handling the AJAX request
                 $('#submitForm').prop('disabled', false);
             },

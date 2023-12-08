@@ -6,8 +6,10 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Utilities\ImageHandler;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostStoreRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostStoreRequest;
+use DataTables;
+
 
 class PostController extends Controller
 {
@@ -41,6 +43,27 @@ class PostController extends Controller
 
         // Return a success response
         return response()->json(['message' => 'Post created successfully'], 200);
+    }
+
+    // -------------------------------------------------------------------------
+    // Private and Protected Functions
+    // -------------------------------------------------------------------------
+
+
+    protected function getPostsData()
+    {
+        $posts = Post::with('image');
+
+        return DataTables::of($posts)
+            ->addColumn('image', function ($post) {
+                return view('backend.posts.image_column', ['post' => $post])->render();
+            })
+            ->addColumn('status', function ($post) {
+                return $post->status == 1 ? 'Approved' : 'Block';
+            })
+            ->addColumn('action', 'backend.posts.action_column')
+            ->rawColumns(['body', 'image', 'status', 'action'])
+            ->make(true);
     }
 
 }

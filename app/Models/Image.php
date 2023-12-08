@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $guarded = [];
+
+    /**
+     * Get all of the models that own images.
+     */
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

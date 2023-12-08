@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("subtitle")->nullable();
             $table->string("slug");
             $table->text("body");
-            $table->string("image")->default('default.jpg');
             $table->boolean("status")->default(false);
             $table->integer('like')->nullable();
             $table->integer('dislike')->nullable();

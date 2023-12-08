@@ -1,5 +1,6 @@
 <!-- jQuery 2.2.3 -->
 <script src="{{ asset("admin_assets") }}/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset("admin_assets") }}/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
