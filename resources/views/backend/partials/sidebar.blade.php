@@ -31,17 +31,21 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li class="{{ Request::route()->getName() == 'admin.dashboard' ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+        <li class="treeview {{ in_array(Request::route()->getName(), ['admin.posts.list', 'admin.posts.create']) ? 'active' : '' }}">
+          <a href="#"><i class="fa fa-link"></i> <span>Posts</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li class="{{ Request::route()->getName() == 'admin.posts.list' ? 'active' : '' }}">
+                <a href="{{ route('admin.posts.list') }}">Show Posts</a>
+            </li>
+            <li class="{{ Request::route()->getName() == 'admin.posts.create' ? 'active' : '' }}">
+                <a href="{{ route('admin.posts.create') }}">Create Post</a>
+            </li>
           </ul>
         </li>
       </ul>
