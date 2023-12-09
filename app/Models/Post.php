@@ -13,6 +13,22 @@ class Post extends Model
     protected $fillable = ['title', 'subtitle', 'slug', 'body'];
 
     /**
+     * The categories that belong to the post.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * The tags that belong to the post.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
      * Get the first image associated with the post.
      */
     public function image()
