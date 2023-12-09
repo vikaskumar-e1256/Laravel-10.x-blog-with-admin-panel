@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Observers\TagObserver;
 use App\Observers\PostObserver;
 use App\Observers\CategoryObserver;
 use Illuminate\Support\Facades\Event;
@@ -21,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
     protected $observers = [
         Post::class => [PostObserver::class],
         Category::class => [CategoryObserver::class],
+        Tag::class => [TagObserver::class],
     ];
 
     /**

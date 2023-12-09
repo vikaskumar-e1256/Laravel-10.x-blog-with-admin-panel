@@ -63,6 +63,21 @@
             </li>
           </ul>
         </li>
+        <li class="treeview {{ in_array(Request::route()->getName(), ['admin.tags.list', 'admin.tags.create']) ? 'active' : '' }}">
+          <a href="#"><i class="fa fa-link"></i> <span>Tags</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ Request::route()->getName() == 'admin.tags.list' ? 'active' : '' }}">
+                <a href="{{ route('admin.tags.list') }}">Show Tags</a>
+            </li>
+            <li class="{{ Request::route()->getName() == 'admin.tags.create' ? 'active' : '' }}">
+                <a href="{{ route('admin.tags.create') }}">Create Tag</a>
+            </li>
+          </ul>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

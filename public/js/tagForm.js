@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Initialize form validation
-    $('#categoryForm').validate({
+    $('#tagForm').validate({
         rules: {
             name: {
                 required: true,
@@ -49,7 +49,7 @@ $(document).ready(function() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Category created successfully!',
+                    text: 'Tag created successfully!',
                     position: 'top-end',
                     timerProgressBar: true,
                     timer: 3000,
@@ -57,7 +57,7 @@ $(document).ready(function() {
                     animation: true,
                 });
                 // Reset the form
-                $('#categoryForm')[0].reset();
+                $('#tagForm')[0].reset();
                 // Enable the submit button after handling the AJAX request
                 $('#submitForm').prop('disabled', false);
             },
@@ -90,7 +90,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'An error occurred while creating the category.',
+                        text: 'An error occurred while creating the tag.',
                         position: 'top-end',
                         timerProgressBar: true,
                         timer: 3000,

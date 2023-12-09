@@ -41,17 +41,14 @@ class CategoryController extends Controller
 
     public function getCategoryData()
     {
-        $categories = Category::with('image');
+        $categories = Category::all();
 
         return DataTables::of($categories)
-            ->addColumn('image', function ($category) {
-                return view('backend.categories.image_column', ['category' => $category])->render();
-            })
             ->addColumn('status', function ($category) {
                 return $category->status == 1 ? 'Approved' : 'Block';
             })
             ->addColumn('action', 'backend.categories.action_column')
-            ->rawColumns(['title', 'slug', 'status', 'action'])
+            ->rawColumns(['name', 'slug', 'status', 'action'])
             ->make(true);
     }
 }

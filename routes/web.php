@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Post\PostController;
+use App\Http\Controllers\Backend\Tag\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,18 @@ Route::prefix('admin/')->name('admin.')->group(function() {
         Route::post('store', [CategoryController::class, 'store'])
             ->name('store');
         Route::get('ajax', [CategoryController::class, 'getCategoryData'])
+            ->name('data');
+    });
+
+    // Tag Routes
+    Route::prefix('tags/')->name('tags.')->group(function(){
+        Route::get('/', [TagController::class, 'index'])
+            ->name('list');
+        Route::get('create', [TagController::class, 'create'])
+            ->name('create');
+        Route::post('store', [TagController::class, 'store'])
+            ->name('store');
+        Route::get('ajax', [TagController::class, 'getTagData'])
             ->name('data');
     });
 

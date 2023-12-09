@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    $('#category-table').DataTable({
+    $('#tag-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: {
-            url: categoryDataUrl,
+            url: tagDataUrl,
             type: 'GET',
         },
         columns: [
