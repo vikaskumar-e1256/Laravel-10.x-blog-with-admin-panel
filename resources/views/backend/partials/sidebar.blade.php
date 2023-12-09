@@ -48,6 +48,21 @@
             </li>
           </ul>
         </li>
+        <li class="treeview {{ in_array(Request::route()->getName(), ['admin.categories.list', 'admin.categories.create']) ? 'active' : '' }}">
+          <a href="#"><i class="fa fa-link"></i> <span>Categories</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ Request::route()->getName() == 'admin.categories.list' ? 'active' : '' }}">
+                <a href="{{ route('admin.categories.list') }}">Show Categories</a>
+            </li>
+            <li class="{{ Request::route()->getName() == 'admin.categories.create' ? 'active' : '' }}">
+                <a href="{{ route('admin.categories.create') }}">Create Category</a>
+            </li>
+          </ul>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
