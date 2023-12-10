@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
 
+@section('heading', 'Posts')
+@section('page', 'Post')
 @section('content')
 <div class="col-md-12">
     <!-- Horizontal Form -->

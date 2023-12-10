@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
 
+@section('heading', 'Tags')
+@section('page', 'Tag')
 @section('content')
     <div class="row">
         <div class="col-xs-12">

@@ -1,11 +1,13 @@
 @extends('backend.layouts.master')
 
+@section('heading', 'Tags')
+@section('page', 'Tag')
 @section('content')
 <div class="col-md-12">
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Tag Category</h3>
+            <h3 class="box-title">Create Tag</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->

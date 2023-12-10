@@ -32,7 +32,6 @@
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="{{ Request::route()->getName() == 'admin.dashboard' ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview {{ in_array(Request::route()->getName(), ['admin.posts.list', 'admin.posts.create']) ? 'active' : '' }}">
           <a href="#"><i class="fa fa-link"></i> <span>Posts</span>
             <span class="pull-right-container">
