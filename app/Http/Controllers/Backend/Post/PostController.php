@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backend\Post;
 
+use DataTables;
+use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Utilities\ImageHandler;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostStoreRequest;
-use DataTables;
 
 
 class PostController extends Controller
@@ -20,7 +22,9 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('backend.posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('backend.posts.create', compact('categories', 'tags'));
     }
 
     public function store(PostStoreRequest $request)

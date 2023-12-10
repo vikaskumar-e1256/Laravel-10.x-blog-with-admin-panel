@@ -1,5 +1,7 @@
 $(document).ready(function() {
     CKEDITOR.replace('body');
+    $(".categorySelect2").select2();
+    $(".tagSelect2").select2();
 
     // Initialize form validation
     $('#postForm').validate({

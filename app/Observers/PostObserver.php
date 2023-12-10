@@ -14,4 +14,12 @@ class PostObserver
     {
         $post->slug = Str::slug($post->slug);
     }
+
+    public function created(Post $post)
+    {
+        $categoryIds = request()->input('categories', []);
+        $tagIds = request()->input('tags', []);
+        $post->categories()->sync($categoryIds);
+        $post->tags()->sync($tagIds);
+    }
 }

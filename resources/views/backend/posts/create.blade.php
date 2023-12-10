@@ -35,6 +35,28 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="categories" class="col-sm-2 control-label">Categories</label>
+                    <div class="col-sm-10">
+                        <select name="categories[]" id="categories" class="form-control categorySelect2" multiple>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags" class="col-sm-2 control-label">Tags</label>
+                    <div class="col-sm-10">
+                        <select name="tags[]" id="tags" class="form-control tagSelect2" multiple>
+                            @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="body" class="col-sm-2 control-label">Body</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="body" name="body" placeholder="Body"></textarea>
@@ -68,8 +90,15 @@
 </div>
 @endsection
 
+@push('styles')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('admin_assets') }}/plugins/select2/select2.min.css">
+@endpush
+
 @push('scripts')
 <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<!-- Select2 -->
+<script src="{{ asset('admin_assets') }}/plugins/select2/select2.full.min.js"></script>
 <script src="{{ asset('js/postForm.js') }}"></script>
 @endpush
