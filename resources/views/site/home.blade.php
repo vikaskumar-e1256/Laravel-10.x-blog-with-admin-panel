@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            @forelse ($activePosts as $post)
+            @forelse ($posts as $post)
             <div class="post-preview">
                 <a href="{{ route('site.post', $post->slug) }}">
                     <h2 class="post-title">
@@ -21,13 +21,15 @@
             </div>
             <hr>
             @empty
-
+            <div class="text-center">
+                <p>No posts found.</p>
+            </div>
             @endforelse
 
             <!-- Pager -->
             <ul class="pager">
                 <li class="next">
-                    {{ $activePosts->links() }}
+                    {{ $posts->links() }}
                 </li>
             </ul>
         </div>

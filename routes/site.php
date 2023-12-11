@@ -19,3 +19,8 @@ Route::get('/', [SiteController::class, 'home'])
 
 Route::get('/post/{slug}', [SiteController::class, 'post'])
     ->name('site.post');
+
+Route::get('posts/category/{slug}', [SiteController::class, 'showByCategory'])
+    ->name('site.posts.category');
+Route::get('posts/tag/{slug}', [SiteController::class, 'showByTag'])
+    ->name('site.posts.tag');

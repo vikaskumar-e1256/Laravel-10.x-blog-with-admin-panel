@@ -10,6 +10,11 @@ class Category extends Model
     use HasFactory;
     protected $fillable = ['name', 'slug', 'status'];
 
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);
