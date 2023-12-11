@@ -96,7 +96,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script src="{{ asset('admin_assets') }}/ckeditor/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <!-- Select2 -->
 <script src="{{ asset('admin_assets') }}/plugins/select2/select2.full.min.js"></script>

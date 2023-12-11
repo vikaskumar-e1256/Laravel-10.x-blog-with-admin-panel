@@ -10,7 +10,22 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'subtitle', 'slug', 'body'];
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'slug',
+        'body'
+    ];
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 
     /**
      * The categories that belong to the post.

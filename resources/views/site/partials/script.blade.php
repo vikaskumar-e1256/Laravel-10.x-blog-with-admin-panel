@@ -10,3 +10,4 @@
 
 <!-- Theme JavaScript -->
 <script src="{{ asset('site_assets') }}/js/clean-blog.min.js"></script>
+@stack('scripts')

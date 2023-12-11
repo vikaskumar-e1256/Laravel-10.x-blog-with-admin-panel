@@ -30,7 +30,7 @@
                     <div class="post-heading">
                         <h1>@yield('title')</h1>
                         <h2 class="subheading"></h2>
-                        <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        <span class="meta">Posted by <a href="#">@yield('posted_by')</a> on @yield('post_create_datetime')</span>
                     </div>
                     @else
                     <div class="site-heading">
