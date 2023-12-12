@@ -20,9 +20,12 @@ use App\Http\Controllers\Backend\Category\CategoryController;
 Route::get('/admin-login', [LoginController::class, 'showLoginForm'])
     ->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login'])
-    ->name('admin.post.login');
+    ->name('admin.login');
 
-Route::prefix('admin/')->name('admin.')->group(function() {
+
+Route::prefix('admin/')->name('admin.')->middleware(['auth:admin'])->group(function() {
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
     // Dashboard Route
     Route::get('dashboard', [DashboardController::class, 'showDashboard'])
         ->name('dashboard');

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Site\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -41,5 +44,27 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('site.auth.login');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('web');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        //$request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/login');
     }
 }
