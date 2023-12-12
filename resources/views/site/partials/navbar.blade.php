@@ -16,11 +16,27 @@
                     <a href="{{ route('site.home') }}">Home</a>
                 </li>
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="{{ route('site.about') }}">About</a>
                 </li>
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="{{ route('site.contact') }}">Contact</a>
                 </li>
+
+                @if (Auth::check())
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">Register</a>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- /.navbar-collapse -->

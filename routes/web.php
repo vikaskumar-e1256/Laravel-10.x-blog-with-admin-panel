@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Backend\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\Tag\TagController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Post\PostController;
-use App\Http\Controllers\Backend\Tag\TagController;
+use App\Http\Controllers\Backend\Auth\LoginController;
+use App\Http\Controllers\Backend\Category\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\Backend\Tag\TagController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/admin-login', [LoginController::class, 'showLoginForm'])
+    ->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'login'])
+    ->name('admin.post.login');
+
 Route::prefix('admin/')->name('admin.')->group(function() {
     // Dashboard Route
     Route::get('dashboard', [DashboardController::class, 'showDashboard'])
@@ -60,7 +66,3 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     });
 
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

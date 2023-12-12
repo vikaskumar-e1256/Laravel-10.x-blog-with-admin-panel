@@ -1,6 +1,6 @@
 @extends('site.layouts.main')
 
-@section('bg-img', asset('site_assets/img/post-bg.jpg'))
+@section('bg-img', $post->image && $post->image->filename ? asset('storage/images/' . $post->image->filename) : asset('site_assets/img/post-bg.jpg'))
 @section('title', $post->title)
 @section('subheading', $post->subtitle)
 @section('posted_by', 'Vk-Blog')

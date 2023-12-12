@@ -23,6 +23,16 @@ class SiteController extends Controller
         return view('site.post', ['post' => $post]);
     }
 
+    public function about()
+    {
+        return view('site.about');
+    }
+
+    public function contactUs()
+    {
+        return view('site.contact');
+    }
+
     public function showByCategory(Category $slug)
     {
         $posts = $slug->posts()->latest()->paginate(25);

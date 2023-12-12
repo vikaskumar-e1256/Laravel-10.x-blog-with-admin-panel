@@ -1,9 +1,12 @@
-@extends('layouts.app')
+@extends("site.layouts.main")
 
-@section('content')
+@section('bg-img', asset('site_assets/img/home-bg.jpg'))
+@section('title', 'Verify Your Email Address - Clean Blog')
+@section('subheading', 'A Clean Blog Theme by Start Bootstrap')
+@section("content")
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="card">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
