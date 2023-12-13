@@ -9,7 +9,7 @@
           <img src="{{ asset("admin_assets") }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -77,6 +77,41 @@
             </li>
           </ul>
         </li>
+        <li class="treeview {{ Request::is('admin/roles*') ? 'active' : '' }}">
+            <a href="#">
+                <i class="fa fa-link"></i>
+                <span>Roles</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ Request::routeIs('admin.roles.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.roles.index') }}">Show Roles</a>
+                </li>
+                <li class="{{ Request::routeIs('admin.roles.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.roles.create') }}">Create Role</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview {{ Request::is('admin/Permission*') ? 'active' : '' }}">
+            <a href="#">
+                <i class="fa fa-link"></i>
+                <span>Permissions</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ Request::routeIs('admin.permissions.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.permissions.index') }}">Show Permissions</a>
+                </li>
+                <li class="{{ Request::routeIs('admin.permissions.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.permissions.create') }}">Create Permission</a>
+                </li>
+            </ul>
+        </li>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

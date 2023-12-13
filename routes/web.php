@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Tag\TagController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Post\PostController;
+use App\Http\Controllers\Backend\Role\RoleController;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Category\CategoryController;
+use App\Http\Controllers\Backend\Permission\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +70,11 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth:admin'])->group(funct
         Route::get('ajax', [TagController::class, 'getTagData'])
             ->name('data');
     });
+
+    Route::resources([
+        'roles' => RoleController::class,
+        'permissions' => PermissionController::class,
+    ]);
+
 
 });
