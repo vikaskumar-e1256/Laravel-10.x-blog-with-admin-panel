@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Tag\TagController;
@@ -27,7 +28,7 @@ Route::post('/admin/login', [LoginController::class, 'login'])
 
 
 Route::prefix('admin/')->name('admin.')->middleware(['auth:admin'])->group(function() {
-    Route::post('/logout', [LoginController::class, 'logout'])
+    Route::post('logout', [LoginController::class, 'logout'])
         ->name('logout');
     // Dashboard Route
     Route::get('dashboard', [DashboardController::class, 'showDashboard'])
@@ -76,5 +77,9 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth:admin'])->group(funct
         'permissions' => PermissionController::class,
     ]);
 
-
+});
+Route::middleware('auth:admin')->group(function(){
+    Route::get('ajax', [AdminController::class, 'getAdminData'])
+        ->name('admins.data');
+    Route::resource('admins', AdminController::class);
 });

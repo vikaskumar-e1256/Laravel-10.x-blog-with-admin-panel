@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAdminRequest;
+use DataTables;
 
 class AdminController extends Controller
 {
@@ -13,7 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('backend.admins.list');
     }
 
     /**
@@ -21,15 +25,17 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('backend.admins.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAdminRequest $request)
     {
-        //
+        Admin::create($request->validated());
+        return redirect(route('admins.index'));
     }
 
     /**
@@ -62,5 +68,18 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function getAdminData()
+    {
+        $admins = Admin::all();
+
+        return DataTables::of($admins)
+            ->addColumn('status', function ($category) {
+                return $category->status == 1 ? 'Approved' : 'Block';
+            })
+            ->addColumn('action', 'backend.admins.action_column')
+            ->rawColumns(['name', 'email', 'status', 'action'])
+            ->make(true);
     }
 }

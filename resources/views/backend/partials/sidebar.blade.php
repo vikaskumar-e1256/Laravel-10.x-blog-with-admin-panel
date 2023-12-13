@@ -111,6 +111,23 @@
                 </li>
             </ul>
         </li>
+        <li class="treeview {{ Request::is('admin*') ? 'active' : '' }}">
+            <a href="#">
+                <i class="fa fa-link"></i>
+                <span>Admins</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ Request::routeIs('admins.index') ? 'active' : '' }}">
+                    <a href="{{ route('admins.index') }}">Show Admins</a>
+                </li>
+                <li class="{{ Request::routeIs('admins.create') ? 'active' : '' }}">
+                    <a href="{{ route('admins.create') }}">Create Admin</a>
+                </li>
+            </ul>
+        </li>
 
       </ul>
       <!-- /.sidebar-menu -->
