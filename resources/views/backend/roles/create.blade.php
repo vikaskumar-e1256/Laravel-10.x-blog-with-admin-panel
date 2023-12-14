@@ -32,6 +32,24 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Permissions</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                @foreach($permissions as $permission)
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}">
+                                                {{ $permission->name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

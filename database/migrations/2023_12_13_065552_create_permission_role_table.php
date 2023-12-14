@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_permission', function (Blueprint $table) {
+        Schema::create('permission_role', function (Blueprint $table) {
             $table->foreignIdFor(Role::class)->onDelete('cascade');
             $table->foreignIdFor(Permission::class);
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role_permission');
+        Schema::dropIfExists('permission_role');
     }
 };

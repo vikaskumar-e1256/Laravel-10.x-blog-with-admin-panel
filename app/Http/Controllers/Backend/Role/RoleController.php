@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Role;
 
 use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRoleRequest;
@@ -18,7 +19,8 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view('backend.roles.create');
+        $permissions = Permission::all();
+        return view('backend.roles.create', compact('permissions'));
     }
 
     public function store(CreateRoleRequest $request)
@@ -29,7 +31,8 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('backend.roles.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('backend.roles.edit', compact('role', 'permissions'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)

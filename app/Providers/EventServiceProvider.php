@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Observers\TagObserver;
 use App\Observers\PostObserver;
+use App\Observers\RoleObserver;
 use App\Observers\AdminObserver;
 use App\Observers\CategoryObserver;
 use Illuminate\Support\Facades\Event;
@@ -27,6 +29,7 @@ class EventServiceProvider extends ServiceProvider
         Category::class => [CategoryObserver::class],
         Tag::class => [TagObserver::class],
         Admin::class => [AdminObserver::class],
+        Role::class => [RoleObserver::class],
     ];
 
     /**

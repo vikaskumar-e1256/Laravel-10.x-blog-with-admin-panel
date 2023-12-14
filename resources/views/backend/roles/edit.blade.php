@@ -33,6 +33,22 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name', $role->name) }}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Permissions</label>
+                        <div class="col-sm-10">
+                            @foreach($permissions as $permission)
+                            <div class="col-sm-2">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $role->permissions->contains($permission->id) ? 'checked' : '' }}>
+                                        {{ $permission->name }}
+                                    </label>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

@@ -22,4 +22,10 @@ class PostObserver
         $post->categories()->sync($categoryIds);
         $post->tags()->sync($tagIds);
     }
+
+    public function deleted(Post $post)
+    {
+        $post->categories()->detach();
+        $post->tags()->detach();
+    }
 }
