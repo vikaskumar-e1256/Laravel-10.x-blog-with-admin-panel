@@ -33,7 +33,8 @@ Route::get('posts/category/{slug}', [SiteController::class, 'showByCategory'])
     ->name('site.posts.category');
 Route::get('posts/tag/{slug}', [SiteController::class, 'showByTag'])
     ->name('site.posts.tag');
-
+Route::post('/like/{postId}', [SiteController::class, 'like'])
+    ->name('site.post.like');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])
     ->name('login');

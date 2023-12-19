@@ -13,7 +13,7 @@ class SiteController extends Controller
     public function home()
     {
         $postsPerPage = 25;
-        $posts = Post::active()->with('categories', 'tags')->latest()->paginate($postsPerPage);
+        $posts = Post::active()->with('categories', 'tags', 'likes')->latest()->paginate($postsPerPage);
         return view('site.home', compact('posts'));
     }
 
@@ -43,5 +43,22 @@ class SiteController extends Controller
     {
         $posts = $slug->posts()->latest()->paginate(25);
         return view('site.home', compact('posts'));
+    }
+
+    public function like($postId)
+    {
+        $post = Post::findOrFail($postId);
+        $user = auth()->user();
+
+        // Check if the user already liked the post
+        if ($user->likes()->where('post_id', $post->id)->exists()) {
+            $user->likes()->detach($post->id);
+            $liked = false;
+        } else {
+            $user->likes()->attach($post->id);
+            $liked = true;
+        }
+
+        return response()->json(['liked' => $liked]);
     }
 }

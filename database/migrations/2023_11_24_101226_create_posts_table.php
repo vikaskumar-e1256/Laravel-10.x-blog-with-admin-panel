@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string("slug");
             $table->text("body");
             $table->boolean("status")->default(false);
-            $table->integer('like')->nullable();
-            $table->integer('dislike')->nullable();
             $table->integer('posted_by')->unsigned();
             $table->timestamps();
         });

@@ -18,6 +18,12 @@
                     </h3>
                 </a>
                 <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on {{ $post->created_at->format('F j, Y') }}</p>
+                <!-- Thumbs-up button -->
+                @auth
+                <i class="fa fa-fw fa-thumbs-o-up like-button" data-post-id="{{ $post->id }}" style="{{ $post->likes->contains('user_id', auth()->id()) ? 'color: red;' : '' }}"></i>
+                @else
+                <a href="{{ route('login') }}"><i class="fa fa-fw fa-thumbs-o-up like-button"></i></a>
+                @endauth
             </div>
             <hr>
             @empty
@@ -36,3 +42,29 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.like-button').on('click', function() {
+            var postId = $(this).data('post-id');
+            var url = '{{ route("site.post.like", ":id") }}';
+            url = url.replace(':id', postId);
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.liked) {
+                        $(".like-button[data-post-id='" + postId + "']").css('color', 'red');
+                    } else {
+                        $(".like-button[data-post-id='" + postId + "']").css('color', '');
+                    }
+                }
+            });
+        });
+    });
+</script>
+@endpush
