@@ -3,11 +3,13 @@
 namespace App\Observers;
 
 use App\Models\Admin;
+use Illuminate\Support\Str;
 
 class AdminObserver
 {
     public function creating(Admin $admin)
     {
+        $admin->name = Str::ucfirst($admin->name);
         $admin->password = bcrypt($admin->password);
     }
     /**

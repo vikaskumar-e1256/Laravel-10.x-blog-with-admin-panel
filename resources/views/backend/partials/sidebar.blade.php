@@ -94,6 +94,7 @@
                 </li>
             </ul>
         </li>
+        
         <li class="treeview {{ Request::is('admin/Permission*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>
@@ -111,7 +112,7 @@
                 </li>
             </ul>
         </li>
-        <li class="treeview {{ Request::is('admin*') ? 'active' : '' }}">
+        <li class="treeview {{ Request::is('admins*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>
                 <span>Admins</span>

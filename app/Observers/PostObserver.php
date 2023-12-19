@@ -12,6 +12,8 @@ class PostObserver
      */
     public function saving(Post $post)
     {
+        $post->title = Str::ucfirst($post->title);
+        $post->subtitle = Str::ucfirst($post->subtitle);
         $post->slug = Str::slug($post->slug);
     }
 

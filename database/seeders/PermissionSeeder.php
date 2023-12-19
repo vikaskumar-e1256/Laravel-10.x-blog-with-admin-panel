@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionSeeder extends Seeder
 {
@@ -14,26 +15,27 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            "Create-Post",
-            "Update-Post",
-            "Delete-Post",
-            "Create-User",
-            "Update-User",
-            "Delete-User",
-            "Create-Admin",
-            "Update-Admin",
-            "Delete-Admin",
-            "Create-Category",
-            "Update-Category",
-            "Delete-Category",
-            "Create-Tag",
-            "Update-Tag",
-            "Delete-Tag",
+            "Create-Post" => "post",
+            "Update-Post" => "post",
+            "Delete-Post" => "post",
+            "Create-User" => "user",
+            "Update-User" => "user",
+            "Delete-User" => "user",
+            "Create-Admin" => "admin",
+            "Update-Admin" => "admin",
+            "Delete-Admin" => "admin",
+            "Create-Category" => "category",
+            "Update-Category" => "category",
+            "Delete-Category" => "category",
+            "Create-Tag" => "tag",
+            "Update-Tag" => "tag",
+            "Delete-Tag" => "tag",
         ];
 
-        foreach ($permissions as $permission) {
+        foreach ($permissions as $key => $permission) {
             Permission::create([
-                "name" => $permission,
+                "name" => Str::lower($key),
+                "for" => Str::lower($permission),
             ]);
         }
 

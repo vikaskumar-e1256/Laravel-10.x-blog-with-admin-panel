@@ -22,6 +22,7 @@ class PostController extends Controller
 
     public function create()
     {
+        //$this->authorize('create');
         $categories = Category::all();
         $tags = Tag::all();
         return view('backend.posts.create', compact('categories', 'tags'));

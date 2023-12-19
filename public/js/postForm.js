@@ -64,6 +64,9 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     animation: true,
                 });
+                $('.categorySelect2').val(null).trigger('change');
+                $('.tagSelect2').val(null).trigger('change');
+                CKEDITOR.instances.body.setData('');
                 // Reset the form
                 $('#postForm')[0].reset();
                 // Enable the submit button after handling the AJAX request

@@ -12,6 +12,8 @@ class CategoryObserver
      */
     public function saving(Category $category)
     {
+
+        $category->name = Str::ucfirst($category->name);
         $category->slug = Str::slug($category->slug);
     }
 }

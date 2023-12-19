@@ -12,6 +12,7 @@ class TagObserver
      */
     public function saving(Tag $tag)
     {
+        $tag->name = Str::ucfirst($tag->name);
         $tag->slug = Str::slug($tag->slug);
     }
 }
