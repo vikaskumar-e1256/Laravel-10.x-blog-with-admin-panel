@@ -42,9 +42,11 @@
             <li class="{{ Request::route()->getName() == 'admin.posts.list' ? 'active' : '' }}">
                 <a href="{{ route('admin.posts.list') }}">Show Posts</a>
             </li>
+            @can('create', App\Models\Post::class)
             <li class="{{ Request::route()->getName() == 'admin.posts.create' ? 'active' : '' }}">
                 <a href="{{ route('admin.posts.create') }}">Create Post</a>
             </li>
+            @endcan
           </ul>
         </li>
         <li class="treeview {{ in_array(Request::route()->getName(), ['admin.categories.list', 'admin.categories.create']) ? 'active' : '' }}">
@@ -94,7 +96,7 @@
                 </li>
             </ul>
         </li>
-        
+
         <li class="treeview {{ Request::is('admin/Permission*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>

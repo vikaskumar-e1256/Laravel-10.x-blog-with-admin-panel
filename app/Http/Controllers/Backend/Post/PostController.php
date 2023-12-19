@@ -22,7 +22,7 @@ class PostController extends Controller
 
     public function create()
     {
-        //$this->authorize('create');
+        $this->authorize('create', Post::class);
         $categories = Category::all();
         $tags = Tag::all();
         return view('backend.posts.create', compact('categories', 'tags'));
@@ -66,7 +66,9 @@ class PostController extends Controller
             ->addColumn('status', function ($post) {
                 return $post->status == 1 ? 'Approved' : 'Block';
             })
-            ->addColumn('action', 'backend.posts.action_column')
+            ->addColumn('action', function ($post){
+            return view('backend.posts.action_column', ['post' => $post])->render();
+            })
             ->rawColumns(['body', 'image', 'status', 'action'])
             ->make(true);
     }

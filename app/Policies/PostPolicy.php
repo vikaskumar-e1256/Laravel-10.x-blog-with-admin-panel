@@ -13,7 +13,7 @@ class PostPolicy
      */
     public function viewAny(Admin $user): bool
     {
-        //
+        return true; // All users can view any post
     }
 
     /**
@@ -21,7 +21,7 @@ class PostPolicy
      */
     public function view(Admin $user, Post $post): bool
     {
-        //
+        return true; // All users can view a specific post
     }
 
     /**
@@ -29,7 +29,8 @@ class PostPolicy
      */
     public function create(Admin $user): bool
     {
-        //$user->roles()
+        // Check if the user has the 'create-post' permission
+        return $user->hasPermission('create-post');
     }
 
     /**
@@ -37,7 +38,8 @@ class PostPolicy
      */
     public function update(Admin $user, Post $post): bool
     {
-        //
+        // Check if the user has the 'update-post' permission
+        return $user->hasPermission('update-post');
     }
 
     /**
@@ -45,7 +47,8 @@ class PostPolicy
      */
     public function delete(Admin $user, Post $post): bool
     {
-        //
+        // Check if the user has the 'delete-post' permission
+        return $user->hasPermission('delete-post');
     }
 
     /**
@@ -53,7 +56,8 @@ class PostPolicy
      */
     public function restore(Admin $user, Post $post): bool
     {
-        //
+        // You can customize this based on your business logic
+        return false;
     }
 
     /**
@@ -61,6 +65,7 @@ class PostPolicy
      */
     public function forceDelete(Admin $user, Post $post): bool
     {
-        //
+        // You can customize this based on your business logic
+        return false;
     }
 }
