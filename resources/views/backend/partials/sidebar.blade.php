@@ -59,9 +59,11 @@
             <li class="{{ Request::route()->getName() == 'admin.categories.list' ? 'active' : '' }}">
                 <a href="{{ route('admin.categories.list') }}">Show Categories</a>
             </li>
+            @can('create', App\Models\Category::class)
             <li class="{{ Request::route()->getName() == 'admin.categories.create' ? 'active' : '' }}">
                 <a href="{{ route('admin.categories.create') }}">Create Category</a>
             </li>
+            @endcan
           </ul>
         </li>
         <li class="treeview {{ in_array(Request::route()->getName(), ['admin.tags.list', 'admin.tags.create']) ? 'active' : '' }}">
@@ -74,9 +76,11 @@
             <li class="{{ Request::route()->getName() == 'admin.tags.list' ? 'active' : '' }}">
                 <a href="{{ route('admin.tags.list') }}">Show Tags</a>
             </li>
+            @can('create', App\Models\Tag::class)
             <li class="{{ Request::route()->getName() == 'admin.tags.create' ? 'active' : '' }}">
                 <a href="{{ route('admin.tags.create') }}">Create Tag</a>
             </li>
+            @endcan
           </ul>
         </li>
         @if (Gate::allows('crud-roles'))

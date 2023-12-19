@@ -17,6 +17,7 @@ class TagController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Tag::class);
         return view('backend.tags.create');
     }
 
@@ -41,12 +42,14 @@ class TagController extends Controller
     public function getTagData()
     {
         $tags = Tag::all();
-        
+
         return DataTables::of($tags)
             ->addColumn('status', function ($tag) {
                 return $tag->status == 1 ? 'Approved' : 'Block';
             })
-            ->addColumn('action', 'backend.tags.action_column')
+            ->addColumn('action', function ($tag) {
+                return view('backend.tags.action_column', ['tag' => $tag])->render();
+            })
             ->rawColumns(['name', 'slug', 'status', 'action'])
             ->make(true);
     }

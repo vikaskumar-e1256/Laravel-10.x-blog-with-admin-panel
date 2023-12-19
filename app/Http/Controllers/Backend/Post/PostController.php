@@ -67,7 +67,7 @@ class PostController extends Controller
                 return $post->status == 1 ? 'Approved' : 'Block';
             })
             ->addColumn('action', function ($post){
-            return view('backend.posts.action_column', ['post' => $post])->render();
+                return view('backend.posts.action_column', ['post' => $post])->render();
             })
             ->rawColumns(['body', 'image', 'status', 'action'])
             ->make(true);

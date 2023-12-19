@@ -18,6 +18,7 @@ class CategoryController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Category::class);
         return view('backend.categories.create');
     }
 
@@ -47,7 +48,9 @@ class CategoryController extends Controller
             ->addColumn('status', function ($category) {
                 return $category->status == 1 ? 'Approved' : 'Block';
             })
-            ->addColumn('action', 'backend.categories.action_column')
+            ->addColumn('action', function ($category) {
+                return view('backend.categories.action_column', ['category' => $category])->render();
+            })
             ->rawColumns(['name', 'slug', 'status', 'action'])
             ->make(true);
     }
