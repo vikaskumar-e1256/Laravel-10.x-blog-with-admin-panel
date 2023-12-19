@@ -79,6 +79,7 @@
             </li>
           </ul>
         </li>
+        @if (Gate::allows('crud-roles'))
         <li class="treeview {{ Request::is('admin/roles*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>
@@ -96,7 +97,8 @@
                 </li>
             </ul>
         </li>
-
+        @endif
+        @if (Gate::allows('crud-permission'))
         <li class="treeview {{ Request::is('admin/Permission*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>
@@ -114,6 +116,8 @@
                 </li>
             </ul>
         </li>
+        @endif
+        @if (Gate::allows('crud-admin'))
         <li class="treeview {{ Request::is('admins*') ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-link"></i>
@@ -131,7 +135,7 @@
                 </li>
             </ul>
         </li>
-
+        @endif
       </ul>
       <!-- /.sidebar-menu -->
     </section>

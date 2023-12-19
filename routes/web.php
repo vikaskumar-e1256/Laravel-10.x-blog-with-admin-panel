@@ -72,14 +72,16 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth:admin'])->group(funct
             ->name('data');
     });
 
-    Route::resources([
-        'roles' => RoleController::class,
-        'permissions' => PermissionController::class,
-    ]);
+    Route::resource('roles', RoleController::class)
+        ->middleware('can:crud-roles');
+    Route::resource('permissions', PermissionController::class)
+        ->middleware('can:crud-permission');
+
 
 });
 Route::middleware('auth:admin')->group(function(){
     Route::get('ajax', [AdminController::class, 'getAdminData'])
         ->name('admins.data');
-    Route::resource('admins', AdminController::class);
+    Route::resource('admins', AdminController::class)
+        ->middleware('can:crud-admin');
 });

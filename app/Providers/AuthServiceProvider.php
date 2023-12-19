@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\Admin;
 use App\Models\Post;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +26,17 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('crud-roles', function (Admin $user) {
+            return $user->roles->contains('name', 'admin');
+        });
+
+        Gate::define('crud-permission', function (Admin $user) {
+            return $user->roles->contains('name', 'admin');
+        });
+
+        Gate::define('crud-admin', function (Admin $user) {
+            return $user->roles->contains('name', 'admin');
+        });
 
     }
 }
