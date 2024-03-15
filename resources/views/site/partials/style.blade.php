@@ -1,3 +1,5 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <!-- Bootstrap Core CSS -->
 <link href="{{ asset('site_assets') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

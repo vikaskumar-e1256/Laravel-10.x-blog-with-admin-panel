@@ -11,57 +11,29 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="pricingTable10">
-                    <div class="pricingTable-header">
-                        <h3 class="heading">Free Plan</h3>
-                        <span class="price-value">
-                            <span class="currency">$</span> 0
-                            <span class="month">/mo</span>
-                        </span>
-                    </div>
-                    <div class="pricing-content">
-                        <ul>
-                            <li>Limited to 1 blog post per month.</li>
-                        </ul>
-                        <a href="" class="read btn btn-primary btn-block">Subscribe</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricingTable10">
-                    <div class="pricingTable-header">
-                        <h3 class="heading">Starter Plan</h3>
-                        <span class="price-value">
-                            <span class="currency">$</span> 9.99
-                            <span class="month">/mo</span>
-                        </span>
-                    </div>
-                    <div class="pricing-content">
-                        <ul>
-                            <li>Up to 15 blog posts per month.</li>
-                        </ul>
-                        <a href="" class="read btn btn-primary btn-block">Subscribe</a>
+            @foreach($pricingPlans as $plan)
+                <div class="col-md-4">
+                    <div class="pricingTable10">
+                        <div class="pricingTable-header">
+                            <h3 class="heading">{{ $plan->name }}</h3>
+                            <span class="price-value">
+                                <span class="currency">$</span> {{ $plan->price }}
+                                <span class="month">/{{ $plan->interval }}</span>
+                            </span>
+                        </div>
+                        <div class="pricing-content">
+                            <ul>
+                                <li>{{ $plan->features }}</li>
+                            </ul>
+                            @auth
+                                <a href="{{ route('site.checkout', $plan->id) }}" class="read btn btn-primary btn-block">Subscribe</a>
+                            @else
+                                <p class="text-info">Please <a href="{{ route('login') }}">log in</a> to subscribe.</p>
+                            @endauth
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pricingTable10">
-                    <div class="pricingTable-header">
-                        <h3 class="heading">Business Plan</h3>
-                        <span class="price-value">
-                            <span class="currency">$</span> 49.99
-                            <span class="month">/mo</span>
-                        </span>
-                    </div>
-                    <div class="pricing-content">
-                        <ul>
-                            <li>Unlimited blog posts per month.</li>
-                        </ul>
-                        <a href="" class="read btn btn-primary btn-block">Subscribe</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

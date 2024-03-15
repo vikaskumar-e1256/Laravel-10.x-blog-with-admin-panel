@@ -12,15 +12,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{{ route('site.home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ route('site.about') }}">About</a>
-                </li>
-                <li>
-                    <a href="{{ route('site.contact') }}">Contact</a>
-                </li>
+                @foreach ($menuItems as $menuItem)
+                    <li class="{{ request()->routeIs($menuItem['route']) ? 'active' : '' }}">
+                        <a href="{{ route($menuItem['route']) }}">{{ $menuItem['label'] }}</a>
+                    </li>
+                @endforeach
 
                 @if (Auth::check())
                     <li>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PricingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Site\Auth\LoginController;
@@ -51,6 +53,20 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkReques
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
     ->name('password.email');
 
-Route::get('pricing', function() {
-    return view('site.pricing');
+Route::get('pricing', PricingController::class)
+    ->name('site.pricing');
+
+Route::get('checkout/{plan_id}', [PaymentController::class, 'checkout'])
+    ->name('site.checkout')
+    ->middleware('auth');
+    
+Route::post('pay-now', [PaymentController::class, 'payNow'])
+    ->name('site.pay')
+    ->middleware('auth');
+
+Route::get('thank-you', function() {
+    return view('site.thank-you');
+});
+Route::get('payment-failed', function() {
+    return view('site.payment-failed');
 });

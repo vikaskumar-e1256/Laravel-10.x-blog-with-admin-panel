@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Post extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'title',
         'subtitle',
