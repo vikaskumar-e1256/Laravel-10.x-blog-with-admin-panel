@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\PricingController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\RazorpayController;
 
 /*
@@ -32,6 +34,12 @@ Route::prefix('auth/')->group(function () {
     });
 
 });
+Route::middleware(['auth:api'])->group(function () {
+    Route::post('checkout', [PaymentController::class, 'checkout']);
+    Route::post('pay-now', [PaymentController::class, 'payNow']);
+    Route::post('verify-payment-signature-rzp', [PaymentController::class, 'verifyPaymentSignatureRazorpay']);
+});
 
+Route::get('plans', PricingController::class);
 Route::get('posts', [PostController::class, 'getAllPosts']);
 Route::get('post/{slug}', [PostController::class, 'getPostBySlug']);

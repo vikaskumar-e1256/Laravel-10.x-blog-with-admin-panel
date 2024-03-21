@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PricingPlan;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PricingPlansTableSeeder extends Seeder
 {
@@ -12,33 +13,33 @@ class PricingPlansTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $plans = [
+        $pricingPlans = [
             [
-                'name' => 'Free Plan',
-                'price' => 0.00,
-                'interval' => 'mo',
-                'features' => 'Limited to 1 blog post per month.',
+                'name' => 'Free',
+                'price' => 0,
+                'features' => '1 Blog Post / Month, Basic Support, Email Support, Unlimited Access',
                 'post_limit' => 1,
-                'razorpay_plan_id' => NULL
             ],
             [
-                'name' => 'Starter Plan',
-                'price' => 9.99,
-                'interval' => 'mo',
-                'features' => 'Up to 15 blog posts per month.',
-                'post_limit' => 15,
-                'razorpay_plan_id' => 'plan_NI7lY3XbepMtS4'
+                'razorpay_plan_id' => 'plan_NnmHLkSEsgjTGP',
+                'stripe_plan_id' => 'YOUR_STRIPE_PLAN_ID_2', // Replace with your actual plan ID
+                'name' => 'Basic',
+                'price' => 10,
+                'features' => '4 Blog Posts / Month, Email Support, Email Support, Unlimited Access',
+                'post_limit' => 2,
             ],
             [
-                'name' => 'Business Plan',
-                'price' => 49.99,
-                'interval' => 'mo',
-                'features' => 'Unlimited blog posts per month.',
-                'post_limit' => null, // Unlimited posts
-                'razorpay_plan_id' => 'plan_NI7mTBgAMOOStt'
+                'razorpay_plan_id' => 'plan_NnmJcQmu8IluHc',
+                'stripe_plan_id' => 'YOUR_STRIPE_PLAN_ID_3',
+                'name' => 'Premium',
+                'price' => 20,
+                'features' => 'Unlimited Blog Posts / Month, Email & Phone Support, 24/7 Priority Support',
+                'post_limit' => null, // No post limit for Premium plan
             ],
         ];
 
-        \DB::table('pricing_plans')->insert($plans);
+        foreach ($pricingPlans as $plan) {
+            PricingPlan::create($plan);
+        }
     }
 }

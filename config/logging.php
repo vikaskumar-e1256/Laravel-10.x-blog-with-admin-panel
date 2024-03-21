@@ -52,6 +52,12 @@ return [
     */
 
     'channels' => [
+        'payment_activity_log' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/payment_activity.log'),
+            'level' => 'debug',
+        ],
+        
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

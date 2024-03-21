@@ -12,7 +12,7 @@ class PricingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $pricingPlans = PricingPlan::all();
+        $pricingPlans = PricingPlan::active()->get();
         return view('site.pricing', compact('pricingPlans'));
     }
 }

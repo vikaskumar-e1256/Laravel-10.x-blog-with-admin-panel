@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('interval')->default('mo');
             $table->text('features');
             $table->unsignedBigInteger('post_limit')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->index('razorpay_plan_id');

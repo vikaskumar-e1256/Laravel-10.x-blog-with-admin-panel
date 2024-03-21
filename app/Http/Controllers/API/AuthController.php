@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Validator;
 
 
 class AuthController extends Controller
@@ -16,7 +16,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|min:5',
         ]);
 
         $user = User::create([
@@ -45,7 +45,7 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (!$token = auth()->guard('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Credentials does not match!'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -93,6 +93,8 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
+            'name' => auth('api')->user()->name,
+            'email' => auth('api')->user()->email,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
